@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@nestjs/common':
     specifier: ^10.0.0
-    version: registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1)
+    version: registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
   '@nestjs/config':
     specifier: ^3.1.1
     version: registry.npmmirror.com/@nestjs/config@3.1.1(@nestjs/common@10.3.0)(reflect-metadata@0.1.14)
@@ -16,7 +16,7 @@ dependencies:
     version: registry.npmmirror.com/@nestjs/core@10.3.0(@nestjs/common@10.3.0)(@nestjs/platform-express@10.3.0)(reflect-metadata@0.1.14)(rxjs@7.8.1)
   '@nestjs/mapped-types':
     specifier: '*'
-    version: registry.npmmirror.com/@nestjs/mapped-types@2.0.4(@nestjs/common@10.3.0)(reflect-metadata@0.1.14)
+    version: registry.npmmirror.com/@nestjs/mapped-types@2.0.4(@nestjs/common@10.3.0)(class-transformer@0.5.1)(reflect-metadata@0.1.14)
   '@nestjs/platform-express':
     specifier: ^10.0.0
     version: registry.npmmirror.com/@nestjs/platform-express@10.3.0(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)
@@ -26,6 +26,9 @@ dependencies:
   bcryptjs:
     specifier: ^2.4.3
     version: registry.npmmirror.com/bcryptjs@2.4.3
+  class-transformer:
+    specifier: ^0.5.1
+    version: registry.npmmirror.com/class-transformer@0.5.1
   mysql2:
     specifier: ^3.6.5
     version: registry.npmmirror.com/mysql2@3.6.5
@@ -1079,7 +1082,7 @@ packages:
       - webpack-cli
     dev: true
 
-  registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1):
+  registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1):
     resolution: {integrity: sha512-DGv34UHsZBxCM3H5QGE2XE/+oLJzz5+714JQjBhjD9VccFlQs3LRxo/epso4l7nJIiNlZkPyIUC8WzfU/5RTsQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nestjs/common/-/common-10.3.0.tgz}
     id: registry.npmmirror.com/@nestjs/common/10.3.0
     name: '@nestjs/common'
@@ -1095,6 +1098,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
+      class-transformer: registry.npmmirror.com/class-transformer@0.5.1
       iterare: registry.npmmirror.com/iterare@1.2.1
       reflect-metadata: registry.npmmirror.com/reflect-metadata@0.1.14
       rxjs: registry.npmmirror.com/rxjs@7.8.1
@@ -1110,7 +1114,7 @@ packages:
       '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
       reflect-metadata: ^0.1.13
     dependencies:
-      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       dotenv: registry.npmmirror.com/dotenv@16.3.1
       dotenv-expand: registry.npmmirror.com/dotenv-expand@10.0.0
       lodash: registry.npmmirror.com/lodash@4.17.21
@@ -1139,7 +1143,7 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       '@nestjs/platform-express': registry.npmmirror.com/@nestjs/platform-express@10.3.0(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)
       '@nuxtjs/opencollective': registry.npmmirror.com/@nuxtjs/opencollective@0.3.2
       fast-safe-stringify: registry.npmmirror.com/fast-safe-stringify@2.1.1
@@ -1152,7 +1156,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  registry.npmmirror.com/@nestjs/mapped-types@2.0.4(@nestjs/common@10.3.0)(reflect-metadata@0.1.14):
+  registry.npmmirror.com/@nestjs/mapped-types@2.0.4(@nestjs/common@10.3.0)(class-transformer@0.5.1)(reflect-metadata@0.1.14):
     resolution: {integrity: sha512-xl+gUSp0B+ln1VSNoUftlglk8dfpUes3DHGxKZ5knuBxS5g2H/8p9/DSBOYWUfO5f4u9s6ffBPZ71WO+tbe5SA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@nestjs/mapped-types/-/mapped-types-2.0.4.tgz}
     id: registry.npmmirror.com/@nestjs/mapped-types/2.0.4
     name: '@nestjs/mapped-types'
@@ -1168,7 +1172,8 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      class-transformer: registry.npmmirror.com/class-transformer@0.5.1
       reflect-metadata: registry.npmmirror.com/reflect-metadata@0.1.14
     dev: false
 
@@ -1181,7 +1186,7 @@ packages:
       '@nestjs/common': ^10.0.0
       '@nestjs/core': ^10.0.0
     dependencies:
-      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       '@nestjs/core': registry.npmmirror.com/@nestjs/core@10.3.0(@nestjs/common@10.3.0)(@nestjs/platform-express@10.3.0)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       body-parser: registry.npmmirror.com/body-parser@1.20.2
       cors: registry.npmmirror.com/cors@2.8.5
@@ -1243,7 +1248,7 @@ packages:
       '@nestjs/platform-express':
         optional: true
     dependencies:
-      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       '@nestjs/core': registry.npmmirror.com/@nestjs/core@10.3.0(@nestjs/common@10.3.0)(@nestjs/platform-express@10.3.0)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       '@nestjs/platform-express': registry.npmmirror.com/@nestjs/platform-express@10.3.0(@nestjs/common@10.3.0)(@nestjs/core@10.3.0)
       tslib: registry.npmmirror.com/tslib@2.6.2
@@ -1261,7 +1266,7 @@ packages:
       rxjs: ^7.2.0
       typeorm: ^0.3.0
     dependencies:
-      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/common': registry.npmmirror.com/@nestjs/common@10.3.0(class-transformer@0.5.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       '@nestjs/core': registry.npmmirror.com/@nestjs/core@10.3.0(@nestjs/common@10.3.0)(@nestjs/platform-express@10.3.0)(reflect-metadata@0.1.14)(rxjs@7.8.1)
       reflect-metadata: registry.npmmirror.com/reflect-metadata@0.1.14
       rxjs: registry.npmmirror.com/rxjs@7.8.1
@@ -2559,6 +2564,11 @@ packages:
     name: cjs-module-lexer
     version: 1.2.3
     dev: true
+
+  registry.npmmirror.com/class-transformer@0.5.1:
+    resolution: {integrity: sha512-SQa1Ws6hUbfC98vKGxZH3KFY0Y1lm5Zm0SY8XX9zbK7FJCyVEac3ATW0RIpwzW+oOfmHE5PMPufDG9hCfoEOMw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/class-transformer/-/class-transformer-0.5.1.tgz}
+    name: class-transformer
+    version: 0.5.1
 
   registry.npmmirror.com/cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cli-cursor/-/cli-cursor-3.1.0.tgz}
