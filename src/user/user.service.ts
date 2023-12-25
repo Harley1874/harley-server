@@ -9,9 +9,7 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UserService {
   constructor(
-    // 注入仓库
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
   create(createUserDto: CreateUserDto) {
     // 创建一个用户
@@ -23,12 +21,18 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  login(createUserDto: CreateUserDto) {
-    
+  login(params) {
+    console.log('params', params);
     // 登录
-    return this.userRepository.findOne({
-      username: createUserDto.username,
-      password: createUserDto.password,
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
+          code: 200,
+          data: {
+            username: 'admin',
+          },
+        });
+      }, 100);
     });
   }
 
