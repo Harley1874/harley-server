@@ -30,10 +30,31 @@ export class UserService {
           code: 200,
           data: {
             username: 'admin',
+            token: '1234567890',
           },
+          success: true,
+          message: '登录成功',
         });
       }, 100);
     });
+  }
+
+  getUserInfo() {
+    const obj = {
+      code: 200,
+      data: {
+        userId: '1',
+        username: 'admin',
+        realName: 'Admin',
+        avatar: '',
+        desc: 'manager',
+        password: 'mima',
+        token: '1234567890',
+      },
+      success: true,
+      message: '',
+    };
+    return Promise.resolve(obj);
   }
 
   findAll() {
