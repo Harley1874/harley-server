@@ -1,75 +1,98 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+
+import { makeSalt, encryptPassword } from '../utils/cryptogram';
+
 // 连接数据库
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Like } from 'typeorm';
 import { User } from './entities/user.entity';
 
+import { EventEmitter2 } from '@nestjs/event-emitter';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
-  create(createUserDto: CreateUserDto) {
-    // 创建一个用户
-    const user = new User();
-    user.username = createUserDto.username;
-    user.password = createUserDto.password;
-    user.email = createUserDto.email;
-    // 保存到数据库
-    return this.userRepository.save(user);
+
+  /**
+   * 查询是否有该用户
+   * @param username 用户名
+   */
+  async findOne(username: string): Promise<any | undefined> {
+    const name = username;
+    try {
+      const user = await this.userRepository.findOne({
+        where: {
+          username: name,
+        },
+      });
+      return user;
+    } catch (error) {
+      return void 0;
+    }
   }
 
-  login(params) {
-    console.log('params', params);
-    // 登录
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          code: 200,
-          data: {
-            username: 'admin',
-            token: '1234567890',
-          },
-          success: true,
-          message: '登录成功',
-        });
-      }, 100);
-    });
-  }
+  /**
+   * 注册
+   * @param requestBody 请求体
+   */
+  async register(requestBody: any): Promise<any> {
+    const { username, realname, password, repassword, mobile, deal_pass, invite_code } = requestBody;
+    if (password !== repassword) {
+      return {
+        code: 400,
+        msg: '两次密码不一致',
+      };
+    }
+    const user = await this.findOne(username);
+    if (user) {
+      return {
+        code: 400,
+        msg: '用户已存在',
+      };
+    }
 
-  getUserInfo() {
-    const obj = {
-      code: 200,
-      data: {
-        userId: '1',
-        username: 'admin',
-        realName: 'Admin',
-        avatar: '',
-        desc: 'manager',
-        password: 'mima',
-        token: '1234567890',
-      },
-      success: true,
-      message: '',
+    // 制作密码盐
+    const passwordSalt = makeSalt();
+    // 制作密码
+    const hashPwd = encryptPassword(password, passwordSalt);
+    // 创建用户
+    const newUser = {
+      username,
+      realname,
+      password: hashPwd,
+      passwordSalt,
+      mobile,
     };
-    return Promise.resolve(obj);
+    // 保存用户
+    const createUser = await this.userRepository.save(newUser);
+    const resUser = {
+      username: newUser.username,
+      realname: newUser.realname,
+      mobile: newUser.mobile,
+      userId: createUser.userId,
+      deal_pass: deal_pass, // 提现密码
+      invite_code: invite_code, // 邀请码
+    };
+    // 触发事件
+    this.eventEmitter.emit('new_user_register', resUser);
+    return resUser;
   }
 
-  findAll() {
-    return `This action returns all user`;
-  }
+  async enter() {
+    // 创建一个异步任务
+    const task = async () => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('异步任务执行成功');
+        }, 3000);
+      });
+    };
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+    const result = await task(); // 等待异步任务执行完成
+    return result;
   }
 }
